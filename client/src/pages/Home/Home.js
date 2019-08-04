@@ -8,24 +8,24 @@ class Home extends Component {
 
   state = {
     loggedIn: false,
-    joke: ""
+    // joke: ""
   };
 
   componentDidMount() {
-    this.getJoke();
+    // this.getJoke();
     this.loggedIn();
   }
 
-  getJoke = () => {
-    API.ChuckNorris().then(joke => {
-      let newJoke = joke.data.value.joke.replace(/&quot;/g, '"');
-      this.setState({
-        joke: newJoke
-      })
-    }).catch(err => {
-      console.log(err)
-    });
-  }
+  // getJoke = () => {
+  //   API.ChuckNorris().then(joke => {
+  //     let newJoke = joke.data.value.joke.replace(/&quot;/g, '"');
+  //     this.setState({
+  //       joke: newJoke
+  //     })
+  //   }).catch(err => {
+  //     console.log(err)
+  //   });
+  // }
 
   loggedIn = () => {
     API.isLoggedIn().then(user => {
@@ -42,11 +42,14 @@ class Home extends Component {
   render() {
     return (
       <div className="homeBox">
-        <Joke joke={this.state.joke}/>
+        {/* <Joke joke={this.state.joke}/>
         {this.state.loggedIn ? (
           <Button onClick={e=> {this.getJoke()}} color="warning" block>Get New Joke</Button>
-        ) : (<></>)}
+        ) : (<></>)} */}
+
+        This is the home page
       </div>
+      
     );
   }
 }
