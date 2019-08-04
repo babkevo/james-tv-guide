@@ -13,16 +13,13 @@
     "heroku-postbuild": "npm run build"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/evanejtucker/react-auth.git"
+    "type": "",
+    "url": ""
   },
   "keywords": [],
-  "author": "Evan E J Tucker",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/evanejtucker/react-auth/issues"
-  },
-  "homepage": "https://github.com/evanejtucker/react-auth#readme",
+  "author": "James",
+  "license": "",
+
   "dependencies": {
     "axios": "^0.19.0",
     "bcrypt": "^3.0.6",
