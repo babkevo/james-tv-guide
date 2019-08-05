@@ -5,18 +5,21 @@ const tvlistSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
     ref: "User"
-  },   
- programe: {
+  },
+  programe: {
     type: String,
     unique: false,
     required: [true, "text is required"]
   },
   programe_description: {
     type: String
-},
-programe_category: {
-  type: String
-},
+  },
+  programe_category: {
+    type: String
+  },
+  start: Date,
+  end: Date,
+  
   createdAt: {
     type: Date,
     default: Date.now()

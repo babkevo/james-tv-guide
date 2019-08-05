@@ -11,6 +11,7 @@ const Tv = props => (
     <td>{props.tvList.programe}</td>
     <td>{props.tvList.programe_description}</td>
     <td>{props.tvList.programe_category}</td>
+
     <td>
       <Link to={"/tvlist/" + props.tvList._id}>View</Link>
     </td>
@@ -70,10 +71,6 @@ class Home extends Component {
   render() {
     return (
       <div className="homeBox">
-        {/* <Joke joke={this.state.joke}/>
-        {this.state.loggedIn ? (
-          <Button onClick={e=> {this.getJoke()}} color="warning" block>Get New Joke</Button>
-        ) : (<></>)} */}
         <h3>Program list</h3>
         <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>

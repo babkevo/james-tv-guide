@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import "./SinglePage.scss";
-import { Button } from "reactstrap";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import API from "../../utils/API";
 
 class SingleList extends Component {
   constructor(props) {
@@ -12,11 +9,14 @@ class SingleList extends Component {
       programe: "",
       programe_description: "",
       programe_category: "",
+      start: new Date(),
       currentPrograme: {}
     };
     this.onchangeprograme = this.onchangeprograme.bind(this);
     this.onchangeprograme_description = this.onchangeprograme_description.bind(this);
     this.onchangeprograme_category = this.onchangeprograme_category.bind(this);
+    this.handleStartDateChange = this.handleStartDateChange.bind(this);
+
   }
   onchangeprograme(e) {
     this.setState({
@@ -33,6 +33,9 @@ class SingleList extends Component {
       programe_description: e.target.value
     });
   }
+  handleStartDateChange(dt) {
+		this.setState({start: dt});
+	}
   componentDidMount() {
     axios
       .get("/api/tvlist/alltv/")
@@ -61,6 +64,9 @@ class SingleList extends Component {
               {this.state.currentPrograme.programe_category}
             </footer>
           </blockquote>
+        </div>
+        <div className= "card-body">
+        {this.state.currentPrograme.start}
         </div>
       </div>
     );

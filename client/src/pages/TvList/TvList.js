@@ -1,13 +1,9 @@
 import React, { Component } from "react";
 import "./TvList.scss";
-import { Button } from "reactstrap";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import API from "../../utils/API";
-import DateTimePicker from 'react-datetime-picker';
-import Calender from "react-calendar"
-
-
+import DayPickerInput from "react-day-picker/DayPickerInput";
+import "react-day-picker/lib/style.css";
 
 class TvList extends Component {
   constructor(props) {
@@ -19,7 +15,7 @@ class TvList extends Component {
       loading: true,
       programe_description: "",
       programe_category: "",
-      date: new Date(),
+      start: new Date()
     };
 
     this.onchangeprograme = this.onchangeprograme.bind(this);
@@ -27,9 +23,10 @@ class TvList extends Component {
       this
     );
     this.onchangeprograme_category = this.onchangeprograme_category.bind(this);
+    this.handleStartDateChange = this.handleStartDateChange.bind(this);
+    this.handleEndDateChange = this.handleEndDateChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-
 
   componentDidMount() {
     this.loading();
@@ -72,7 +69,14 @@ class TvList extends Component {
       programe_description: e.target.value
     });
   }
-   onChange = date => this.setState({ date })
+  handleStartDateChange(dt) {
+    this.setState({ start: dt });
+  }
+
+  handleEndDateChange(dt) {
+    this.setState({ end: dt });
+  }
+  onChange = date => this.setState({ date });
   onSubmit(e) {
     e.preventDefault();
     console.log(`Form submitted:`);
@@ -81,7 +85,9 @@ class TvList extends Component {
     const newTvList = {
       programe: this.state.programe,
       programe_category: this.state.programe_category,
-      programe_description: this.state.programe_description
+      programe_description: this.state.programe_description,
+      start: this.state.start,
+      end: this.state.end
     };
 
     axios.post("/api/tvlist/add", newTvList).then(res => console.log(res.data));
@@ -89,8 +95,11 @@ class TvList extends Component {
     this.setState({
       programe: "",
       programe_category: "",
-      programe_description: ""
+      programe_description: "",
+      start: "",
+      end: ""
     });
+    window.location = "/";
   }
   render() {
     return (
@@ -120,11 +129,19 @@ class TvList extends Component {
                 onChange={this.onchangeprograme_description}
               />
             </div>
-            <Calender
-          onChange={this.onChange}
-          value={this.state.date}
-        />
+            <div className="form-group">
+              <label>Choose a day</label>
+              <br />
+              <DayPickerInput
+                dayPickerProps={{
+                  month: new Date(2018, 10),
+                  showWeekNumbers: true,
+                  todayButton: "Today"
+                }}
+              />
+            </div>
             <br />
+
             <label>Choose Channel:</label>
             <br />
             <div className="form-group">
