@@ -50,14 +50,14 @@ class SingleList extends Component {
   render() {
     return (
         
-      <div class="card">
-        <div class="card-header">
+      <div className="card">
+        <div className="card-header">
           <strong>{this.state.currentPrograme.programe}</strong>
         </div>
-        <div class="card-body">
-          <blockquote class="blockquote mb-0">
+        <div className="card-body">
+          <blockquote className="blockquote mb-0">
             <p>{this.state.currentPrograme.programe_description}</p>
-            <footer class="blockquote-footer">
+            <footer className="blockquote-footer">
               {this.state.currentPrograme.programe_category}
             </footer>
           </blockquote>
