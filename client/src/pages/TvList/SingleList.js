@@ -35,7 +35,7 @@ class SingleList extends Component {
   }
   componentDidMount() {
     axios
-      .get("http://localhost:3000/api/tvlist/alltv/")
+      .get("/api/tvlist/alltv/")
       .then(response => {
         this.setState({
           currentPrograme: response.data.find(

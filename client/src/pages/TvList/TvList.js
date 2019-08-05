@@ -76,7 +76,7 @@ class TvList extends Component {
     };
 
     axios
-      .post("http://localhost:3000/api/tvlist/add", newTvList)
+      .post("/api/tvlist/add", newTvList)
       .then(res => console.log(res.data));
 
     this.setState({
