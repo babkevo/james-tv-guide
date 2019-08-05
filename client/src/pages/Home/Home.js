@@ -12,7 +12,7 @@ const Tv = props => (
     <td>{props.tvList.programe_description}</td>
     <td>{props.tvList.programe_category}</td>
     <td>
-      <Link to={"/tvlist/" + props.tvList._id}>View</Link>
+      <Link to={"/tvlist/" + props.tvList._}>View</Link>
     </td>
     
   </tr>
@@ -21,14 +21,14 @@ class Home extends Component {
   state = {
     loggedIn: false,
     programes: []
-    
+    // joke: ""
   };
 
   componentDidMount() {
-   
+    // this.getJoke();
     this.loggedIn();
     axios
-      .get("https://james-tv-guide.herokuapp.com/")
+      .get("http://localhost:3000/api/tvlist/alltv")
       .then(response => {
         this.setState({ programes: response.data });
       })
