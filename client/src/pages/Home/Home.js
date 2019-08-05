@@ -21,14 +21,14 @@ class Home extends Component {
   state = {
     loggedIn: false,
     programes: []
-    // joke: ""
+    
   };
 
   componentDidMount() {
-    // this.getJoke();
+   
     this.loggedIn();
     axios
-      .get("hhttps://james-tv-guide.herokuapp.com/")
+      .get("https://james-tv-guide.herokuapp.com/")
       .then(response => {
         this.setState({ programes: response.data });
       })
