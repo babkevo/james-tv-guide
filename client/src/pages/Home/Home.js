@@ -12,7 +12,7 @@ const Tv = props => (
     <td>{props.tvList.programe_description}</td>
     <td>{props.tvList.programe_category}</td>
     <td>
-      <Link to={"/tvlist/" + props.tvList._}>View</Link>
+      <Link to={"/tvlist/" + props.tvList._id}>View</Link>
     </td>
     
   </tr>
