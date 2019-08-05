@@ -28,7 +28,7 @@ class Home extends Component {
     // this.getJoke();
     this.loggedIn();
     axios
-      .get("http://localhost:3000/api/tvlist/alltv")
+      .get("hhttps://james-tv-guide.herokuapp.com/")
       .then(response => {
         this.setState({ programes: response.data });
       })
