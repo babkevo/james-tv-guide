@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export default {
   // logs in user
   login: function(loginInfo) {
@@ -33,6 +34,8 @@ export default {
 
   tvList: function(){
     return axios.get("/api/tvlist/add")
+  },
+  list: function(){
+    return axios.get("/api/tvlist/all")
   }
-
 };
