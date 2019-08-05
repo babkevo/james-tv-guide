@@ -74,6 +74,9 @@ export default class Navigation extends Component {
                                                 <NavLink href="/profile">Profile</NavLink>
                                             </DropdownItem>
                                             <DropdownItem>
+                                                <NavLink href="/tvlist">MyTv List</NavLink>
+                                            </DropdownItem>
+                                            <DropdownItem>
                                                 <NavLink onClick={this.logout}>Logout</NavLink>
                                             </DropdownItem>
                                         </>

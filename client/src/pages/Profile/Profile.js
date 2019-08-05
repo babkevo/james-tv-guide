@@ -56,6 +56,10 @@ class Profile extends Component {
                         )}
                     </div> 
                 )}
+                <div className="favorite">
+                    <hr></hr>
+                    This is where the favaourite programe list is placed..
+                </div>
             </div>
         )
     }

@@ -1,19 +1,46 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import API from "../../utils/API";
-import Joke from "../../components/Joke"
+import axios from "axios";
+import { Link } from 'react-router-dom';
+import Joke from "../../components/Joke";
 import "./Home.scss";
 
+const Tv = props => (
+  <tr>
+    <td>{props.tvList.programe}</td>
+    <td>{props.tvList.programe_description}</td>
+    <td>{props.tvList.programe_category}</td>
+    <td>
+      <Link to={"/tvlist/" + props.tvList._id}>View</Link>
+    </td>
+    
+  </tr>
+);
 class Home extends Component {
-
   state = {
     loggedIn: false,
+    programes: []
     // joke: ""
   };
 
   componentDidMount() {
     // this.getJoke();
     this.loggedIn();
+    axios
+      .get("http://localhost:3000/api/tvlist/alltv")
+      .then(response => {
+        this.setState({ programes: response.data });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
+  tvList() {
+    return this.state.programes.map(function(currentTv, i) {
+      return <Tv tvList={currentTv} key={i} />;
+    });
   }
 
   // getJoke = () => {
@@ -28,16 +55,18 @@ class Home extends Component {
   // }
 
   loggedIn = () => {
-    API.isLoggedIn().then(user => {
-      if (user.data.loggedIn) {
-        this.setState({
-          loggedIn: true
-        });
-      }
-    }).catch(err => {
-      console.log(err);
-    });
-  }
+    API.isLoggedIn()
+      .then(user => {
+        if (user.data.loggedIn) {
+          this.setState({
+            loggedIn: true
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   render() {
     return (
@@ -46,10 +75,18 @@ class Home extends Component {
         {this.state.loggedIn ? (
           <Button onClick={e=> {this.getJoke()}} color="warning" block>Get New Joke</Button>
         ) : (<></>)} */}
-
-        This is the home page
+        <h3>Program list</h3>
+        <table className="table table-striped" style={{ marginTop: 20 }}>
+          <thead>
+            <tr>
+              <th>programe</th>
+              <th>Description</th>
+              <th>Category</th>
+            </tr>
+          </thead>
+          <tbody>{this.tvList()}</tbody>
+        </table>
       </div>
-      
     );
   }
 }

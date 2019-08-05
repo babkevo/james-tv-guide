@@ -32,6 +32,10 @@ const usersSchema = new Schema({
   todos: [{
     type: Schema.Types.ObjectId,
     ref: 'Todo'
+  }],
+  tvlist: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Tvlist'
   }]
 });
 
