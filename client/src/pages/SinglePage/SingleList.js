@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./TvList.scss";
+import "./SinglePage.scss";
 import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";

@@ -7,7 +7,7 @@ import NoMatch from "./pages/NoMatch";
 import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
 import TvList from "./pages/TvList/TvList.js";
-import SingleList from "./pages/TvList/SingleList.js";
+import SingleList from "./pages/SinglePage/SingleList.js";
 import { Container } from 'reactstrap';
 
 function App() {

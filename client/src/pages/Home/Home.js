@@ -81,6 +81,8 @@ class Home extends Component {
               <th>programe</th>
               <th>Description</th>
               <th>Category</th>
+              <th>^^^</th>
+              
             </tr>
           </thead>
           <tbody>{this.tvList()}</tbody>

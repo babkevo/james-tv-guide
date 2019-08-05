@@ -4,6 +4,10 @@ import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import API from "../../utils/API";
+import DateTimePicker from 'react-datetime-picker';
+import Calender from "react-calendar"
+
+
 
 class TvList extends Component {
   constructor(props) {
@@ -14,14 +18,18 @@ class TvList extends Component {
       user: null,
       loading: true,
       programe_description: "",
-      programe_category: ""
+      programe_category: "",
+      date: new Date(),
     };
 
     this.onchangeprograme = this.onchangeprograme.bind(this);
-    this.onchangeprograme_description = this.onchangeprograme_description.bind(this);
+    this.onchangeprograme_description = this.onchangeprograme_description.bind(
+      this
+    );
     this.onchangeprograme_category = this.onchangeprograme_category.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
+
 
   componentDidMount() {
     this.loading();
@@ -64,6 +72,7 @@ class TvList extends Component {
       programe_description: e.target.value
     });
   }
+   onChange = date => this.setState({ date })
   onSubmit(e) {
     e.preventDefault();
     console.log(`Form submitted:`);
@@ -75,9 +84,7 @@ class TvList extends Component {
       programe_description: this.state.programe_description
     };
 
-    axios
-      .post("/api/tvlist/add", newTvList)
-      .then(res => console.log(res.data));
+    axios.post("/api/tvlist/add", newTvList).then(res => console.log(res.data));
 
     this.setState({
       programe: "",
@@ -113,6 +120,10 @@ class TvList extends Component {
                 onChange={this.onchangeprograme_description}
               />
             </div>
+            <Calender
+          onChange={this.onChange}
+          value={this.state.date}
+        />
             <br />
             <label>Choose Channel:</label>
             <br />
