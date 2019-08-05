@@ -24,11 +24,10 @@ class Home extends Component {
     // joke: ""
   };
 
-  componentDidMount() {
-    // this.getJoke();
+  componentDidMount() { 
     this.loggedIn();
     axios
-      .get("http://localhost:3000/api/tvlist/alltv")
+      .get("/api/tvlist/alltv")
       .then(response => {
         this.setState({ programes: response.data });
       })
