@@ -19,7 +19,7 @@ router.get("/:id", function(req, res) {
   });
 });
 
-router.post("/add", authMiddleware.isLoggedIn,function(req, res, next) {
+router.post("/add",function(req, res, next) {
   let tvlist = new db.TvList(req.body);
   tvlist
     .save()
