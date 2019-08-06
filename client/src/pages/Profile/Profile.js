@@ -8,7 +8,7 @@ class Profile extends Component {
     state = {
         loggedIn: false,
         user: null,
-        loading: true
+        loading: true,
     }
 
     componentDidMount() {

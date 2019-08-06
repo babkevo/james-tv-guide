@@ -10,7 +10,7 @@ class SingleList extends Component {
       programe_description: "",
       programe_category: "",
       start: new Date(),
-      currentPrograme: {}
+      currentPrograme: {},
     };
     this.onchangeprograme = this.onchangeprograme.bind(this);
     this.onchangeprograme_description = this.onchangeprograme_description.bind(this);
