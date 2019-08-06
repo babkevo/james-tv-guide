@@ -19,3 +19,4 @@ react app with passport authentication
 * reactstrap
 * animate css
 
+# james-tv-guide
