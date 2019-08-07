@@ -27,10 +27,6 @@ export default {
     return axios.get("/api/users/logout")
   },
 
-  // api that gets a random Chuck Norris Joke
-  // ChuckNorris: function() {
-  //   return axios.get("https://api.icndb.com/jokes/random");
-  // }
 
   tvList: function(){
     return axios.get("/api/tvlist/add")

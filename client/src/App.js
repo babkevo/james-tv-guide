@@ -7,7 +7,6 @@ import NoMatch from "./pages/NoMatch";
 import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
 import TvList from "./pages/TvList/TvList.js";
-import BBC from "./pages/Channels/BBC.js"
 import SingleList from "./pages/SinglePage/SingleList.js";
 import { Container } from 'reactstrap';
 
@@ -23,7 +22,7 @@ function App() {
               <Route exact path="/login" render={(props) => <Auth {...props} action="login" />} />
               <Route exact path="/profile" component={Profile} />
               <Route exact path="/tvlist" component={TvList} />
-              <Route exact path="/BBC" component={BBC} />
+              
               <Route exact path="/tvlist/:id" render={props => <SingleList {...props} />} />
              
               <Route component={NoMatch} />

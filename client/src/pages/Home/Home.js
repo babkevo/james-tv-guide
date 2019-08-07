@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Button } from "reactstrap";
 import API from "../../utils/API";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import "./Home.scss";
 
 const Tv = props => (
@@ -14,7 +14,6 @@ const Tv = props => (
     <td>
       <Link to={"/tvlist/" + props.tvList._id}>View</Link>
     </td>
-    
   </tr>
 );
 class Home extends Component {
@@ -23,7 +22,7 @@ class Home extends Component {
     programes: []
   };
 
-  componentDidMount() { 
+  componentDidMount() {
     this.loggedIn();
     axios
       .get("/api/tvlist/alltv")
@@ -66,11 +65,9 @@ class Home extends Component {
               <th>Description</th>
               <th>Category</th>
               <th>^^^</th>
-             
             </tr>
           </thead>
           <tbody>{this.tvList()}</tbody>
-
         </table>
       </div>
     );
