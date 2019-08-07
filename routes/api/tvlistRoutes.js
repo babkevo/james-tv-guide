@@ -18,8 +18,18 @@ router.get("/:id", function(req, res) {
     res.json(tvlist);
   });
 });
-
-router.post("/add",function(req, res, next) {
+router.get("/api/filteredTv", function(req, res) {
+  db.TvList.find(
+    {
+      programe_category: req.query.programe_category,
+      programe_description: req.query.programe_description
+    },
+    (err, tvlist) => {
+      res.json(tvlist);
+    }
+  );
+});
+router.post("/add", function(req, res, next) {
   let tvlist = new db.TvList(req.body);
   tvlist
     .save()
@@ -48,6 +58,5 @@ router.post("/update/:id", function(req, res) {
       });
   });
 });
-
 
 module.exports = router;

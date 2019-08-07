@@ -7,6 +7,7 @@ import NoMatch from "./pages/NoMatch";
 import TopNav from "./components/TopNav";
 import Footer from "./components/Footer";
 import TvList from "./pages/TvList/TvList.js";
+import FilterChannel from "./pages/Home/FilterChannel.js"
 import SingleList from "./pages/SinglePage/SingleList.js";
 import { Container } from 'reactstrap';
 
@@ -24,6 +25,10 @@ function App() {
               <Route exact path="/tvlist" component={TvList} />
               
               <Route exact path="/tvlist/:id" render={props => <SingleList {...props} />} />
+              <Route
+                        path="/category/:categ/:area"
+                        render={props => <FilterChannel {...props} />}
+                    />
              
               <Route component={NoMatch} />
             </Switch>

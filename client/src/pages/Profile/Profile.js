@@ -9,6 +9,7 @@ class Profile extends Component {
     loggedIn: false,
     user: null,
     loading: true,
+    currentcateg : this.props.match.params.categ,
     channels: [
       {
         url: "/all",
@@ -60,15 +61,15 @@ class Profile extends Component {
     }, 1000);
   }
   ChannelList() {
-    let mk = this.state.currentcateg;
-    return this.state.channels.map(function(channel, i) {
+    let mk = this.state.carrenttv;
+    return this.state.channels.map(function(area, i) {
       return (
         <Link
-          to={"/api/tvlist/alltv" + mk + channel.url}
+          to={"/category/" + mk + area.url}
           key={i}
           className="list-group-item list-group-item-action"
         >
-          {channel.name}
+          {area.name}
         </Link>
       );
     });
