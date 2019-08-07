@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link to Profile test 1`] = `
+Array [
+  "  ",
+  <a
+    href="/localhost:3000/tvlist/alltv"
+    onClick={[Function]}
+  >
+   All Program list
+  </a>,
+  " ",
+]
+`;
