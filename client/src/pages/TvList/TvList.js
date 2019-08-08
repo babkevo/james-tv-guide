@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import "./TvList.scss";
 import axios from "axios";
 import API from "../../utils/API";
-import DayPickerInput from "react-day-picker/DayPickerInput";
+import moment from "moment";
+import DatePicker from "react-datepicker";
 import "react-day-picker/lib/style.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 class TvList extends Component {
   constructor(props) {
@@ -15,7 +17,8 @@ class TvList extends Component {
       loading: true,
       programe_description: "",
       programe_category: "",
-      start: new Date()
+      startDate: new Date(),
+      endDate: new Date()
     };
 
     this.onchangeprograme = this.onchangeprograme.bind(this);
@@ -23,8 +26,8 @@ class TvList extends Component {
       this
     );
     this.onchangeprograme_category = this.onchangeprograme_category.bind(this);
-    this.handleStartDateChange = this.handleStartDateChange.bind(this);
-    this.handleEndDateChange = this.handleEndDateChange.bind(this);
+    this.handleChangeEnd = this.handleChangeEnd.bind(this);
+    this.handleChangeStart = this.handleChangeStart.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -69,12 +72,19 @@ class TvList extends Component {
       programe_description: e.target.value
     });
   }
-  handleStartDateChange(dt) {
-    this.setState({ start: dt });
+  handleChangeStart(date) {
+    this.setState({ startDate: date });
   }
 
-  handleEndDateChange(dt) {
-    this.setState({ end: dt });
+  handleChangeEnd(date) {
+    this.setState({ endDate: date });
+  }
+
+  calculateDaysLeft(startDate, endDate) {
+    if (!moment.isMoment(startDate)) startDate = moment(startDate);
+    if (!moment.isMoment(endDate)) endDate = moment(endDate);
+
+    return endDate.diff(startDate, "days");
   }
   onChange = date => this.setState({ date });
   onSubmit(e) {
@@ -86,8 +96,8 @@ class TvList extends Component {
       programe: this.state.programe,
       programe_category: this.state.programe_category,
       programe_description: this.state.programe_description,
-      start: this.state.start,
-      end: this.state.end
+      startDate: this.state.startDate,
+      endDate: this.state.endDate
     };
 
     axios.post("/api/tvlist/add", newTvList).then(res => console.log(res.data));
@@ -96,13 +106,13 @@ class TvList extends Component {
       programe: "",
       programe_category: "",
       programe_description: "",
-      start: "",
-      end: ""
+      startDate: new Date(),
+      endDate: new Date()
     });
     window.location = "/";
   }
   render() {
-    return (  
+    return (
       <div className="tvbox">
         <div className="tvboxlist">
           <h1 id="userList" />
@@ -130,14 +140,18 @@ class TvList extends Component {
               />
             </div>
             <div className="form-group">
-              <label>Choose a day</label>
+              <label>First aired</label>
               <br />
-              <DayPickerInput
-                dayPickerProps={{
-                  month: new Date(2018, 10),
-                  showWeekNumbers: true,
-                  todayButton: "Today"
-                }}
+              <DatePicker
+                selected={this.state.startDate}
+                onChange={this.handleChangeStart}
+              />
+              <br></br>
+              <label>Next airing</label>
+              <br></br>
+              <DatePicker
+                selected={this.state.endDate}
+                onChange={this.handleChangeEnd}
               />
             </div>
             <br />

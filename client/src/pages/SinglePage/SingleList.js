@@ -9,13 +9,15 @@ class SingleList extends Component {
       programe: "",
       programe_description: "",
       programe_category: "",
-      start: new Date(),
+      startDate: new Date(),
+      endDate: new Date(),
       currentPrograme: {},
     };
     this.onchangeprograme = this.onchangeprograme.bind(this);
     this.onchangeprograme_description = this.onchangeprograme_description.bind(this);
     this.onchangeprograme_category = this.onchangeprograme_category.bind(this);
-    this.handleStartDateChange = this.handleStartDateChange.bind(this);
+    this.handleChangeEnd = this.handleChangeEnd.bind(this);
+    this.handleChangeStart = this.handleChangeStart.bind(this);
 
   }
   onchangeprograme(e) {
@@ -33,9 +35,13 @@ class SingleList extends Component {
       programe_description: e.target.value
     });
   }
-  handleStartDateChange(dt) {
-		this.setState({start: dt});
-	}
+  handleChangeStart(date) {
+    this.setState({ startDate: date });
+  }
+
+  handleChangeEnd(date) {
+    this.setState({ endDate: date });
+  }
   componentDidMount() {
     axios
       .get("/api/tvlist/alltv/")
@@ -65,8 +71,15 @@ class SingleList extends Component {
             </footer>
           </blockquote>
         </div>
+        <hr></hr>
         <div className= "card-body">
-        {this.state.currentPrograme.start}
+          <p>	First aired</p>
+        {this.state.currentPrograme.startDate}
+        </div>
+        <hr></hr>
+        <div className= "card-body">
+        <p>Next airing</p>
+        {this.state.currentPrograme.startDate}
         </div>
       </div>
     );

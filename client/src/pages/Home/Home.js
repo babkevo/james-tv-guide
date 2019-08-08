@@ -9,9 +9,15 @@ const Tv = props => (
     <td>{props.tvList.programe}</td>
     <td>{props.tvList.programe_description}</td>
     <td>{props.tvList.programe_category}</td>
+    <td>{props.tvList.startDate}</td>
+    <td>{props.tvList.endDate}</td>
 
     <td>
       <Link to={"/tvlist/" + props.tvList._id}>View</Link>
+    </td>
+
+    <td>
+      <Link to={"/tvlist/" + props.tvList._id}>Favourite</Link>
     </td>
   </tr>
 );
@@ -20,6 +26,7 @@ class Home extends Component {
     loggedIn: false,
     programes: []
   };
+  onSubmit = this.onSubmit.bind(this);
 
   componentDidMount() {
     this.loggedIn();
@@ -52,6 +59,20 @@ class Home extends Component {
         console.log(err);
       });
   };
+  onSubmit(e) {
+    e.preventDefault();
+    const obj = {
+      programe: this.state.programe,
+      programe_description: this.state.programe_description,
+      programe_category: this.state.programe_category
+    };
+    console.log(obj);
+    axios
+      .post("/api/tvlist/new" + this.props.match.params.id, obj)
+      .then(res => console.log(res.data));
+
+    this.props.history.push("/");
+  }
 
   render() {
     return (
@@ -63,7 +84,10 @@ class Home extends Component {
               <th>programe</th>
               <th>Description</th>
               <th>Category</th>
+              <th>First aired</th>
+              <th>Next airing</th>
               <th>^^^</th>
+              <th>Add</th>
             </tr>
           </thead>
           <tbody>{this.tvList()}</tbody>

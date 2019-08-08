@@ -29,10 +29,6 @@ const usersSchema = new Schema({
     type: Date,
     default: Date.now()
   },
-  todos: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Todo'
-  }],
   tvlist: [{
     type: Schema.Types.ObjectId,
     ref: 'Tvlist'

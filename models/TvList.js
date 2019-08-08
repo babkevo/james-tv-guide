@@ -17,8 +17,15 @@ const tvlistSchema = new Schema({
   programe_category: {
     type: String
   },
-  start: Date,
-  end: Date,
+  startDate: {
+  type: String,
+  format: Date
+
+  },
+  endDate: {
+    type: String,
+  format: Date
+},
   
   createdAt: {
     type: Date,

@@ -41,6 +41,31 @@ router.post("/add", function(req, res, next) {
     });
 });
 
+router.post("/new", authMiddleware.isLoggedIn, function (req, res, next) {
+  const newTvlist = new db.TvList({
+      author: req.user._id,
+      tvlist: req.body.tvlist
+  });
+
+  newTvlist.save((err, newTvlist) => {
+      if (err) throw err;
+      db.User.findByIdAndUpdate(req.user.id, { $push: { tvlist: newTvlist._id } }, (err, user) => {
+          if (err) throw err;
+          res.send(newTvlist, user);
+      });
+  });
+});
+
+router.delete("/remove", authMiddleware.isLoggedIn, function (req, res, next) {
+  db.TvList.findByIdAndDelete(req.body.id, (err, tvlist) => {
+      if (err) throw err;
+      db.User.findByIdAndUpdate(tvlist._id, { $pull: { 'tvlist': tvlist._id } }, { new: true }, (err, user) => {
+          if (err) throw err;
+          res.send(user);
+      });
+  });
+});
+
 router.post("/update/:id", function(req, res) {
   db.TvList.findById(req.params.id, function(err, tvlist) {
     if (!tvlist) res.status(404).send("data is not found");
