@@ -33,7 +33,7 @@ app.use(routes);
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-    "mongodb+srv://admin:rudolf82@cluster0-hch4d.mongodb.net/test?retryWrites=true",
+    "add the mongoAtlas connection here",
   { useNewUrlParser: true },
   function(err) {
     if (err) throw err;
